@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  static const twentyFiveMinutes = 10;
+  static const twentyFiveMinutes = 1500;
 
   bool isRunning = false;
 
@@ -60,19 +60,13 @@ class _HomeScreenState extends State<HomeScreen> {
       seconds: seconds,
     );
     //print(duration.toString().split(".").first.substring(2,7));
-    return duration
-        .toString()
-        .split(".")
-        .first
-        .substring(2, 7);
+    return duration.toString().split(".").first.substring(2, 7);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme
-          .of(context)
-          .scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         children: [
           Flexible(
@@ -82,9 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   format(totalSecond),
                   style: TextStyle(
-                      color: Theme
-                          .of(context)
-                          .cardColor,
+                      color: Theme.of(context).cardColor,
                       fontSize: 89,
                       fontWeight: FontWeight.w600),
                 ),
@@ -97,9 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     IconButton(
                       iconSize: 120,
-                      color: Theme
-                          .of(context)
-                          .cardColor,
+                      color: Theme.of(context).cardColor,
                       onPressed: isRunning ? onPausePressed : onStartPressed,
                       icon: Icon(
                         isRunning
@@ -107,13 +97,31 @@ class _HomeScreenState extends State<HomeScreen> {
                             : Icons.play_circle_outline,
                       ),
                     ),
-                    IconButton(
-                      iconSize: 40,
-                      color: Theme
-                          .of(context)
-                          .cardColor,
-                      onPressed: reset,
-                      icon: Icon(Icons.restore),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: reset,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.restore,
+                            size: 30,
+                            color: Theme.of(context).cardColor,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'reset',
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context).cardColor),
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -125,9 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Theme
-                              .of(context)
-                              .cardColor,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(50)),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -136,8 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             'Pomodoros',
                             style: TextStyle(
                                 fontSize: 20,
-                                color: Theme
-                                    .of(context)
+                                color: Theme.of(context)
                                     .textTheme
                                     .displayMedium!
                                     .color,
@@ -147,8 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             totalPomodoros.toString(),
                             style: TextStyle(
                                 fontSize: 50,
-                                color: Theme
-                                    .of(context)
+                                color: Theme.of(context)
                                     .textTheme
                                     .displayMedium!
                                     .color,
